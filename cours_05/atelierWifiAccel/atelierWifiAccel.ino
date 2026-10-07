@@ -42,7 +42,6 @@ void setup_MPU6500() // Initialize le MPU6500
   Wire.write(0x6B);  // PWR_MGMT_1 register
   Wire.write(0);     // set to zero (wakes up the MPU-6050)
   Wire.endTransmission(true);
-  Serial.begin(115200);
 }
 
 void grab_MPU6500_data() // Collecte les valeurs MPU6500
@@ -54,9 +53,6 @@ void grab_MPU6500_data() // Collecte les valeurs MPU6500
   
   AcX=Wire.read()<<8|Wire.read();  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)    
   AcY=Wire.read()<<8|Wire.read();  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
-
-  Serial.print("AcX = "); Serial.print(AcX);
-  Serial.print(" | AcY = "); Serial.println(AcY);
 }
 
 void sendData() // Envoie les données en OSC
